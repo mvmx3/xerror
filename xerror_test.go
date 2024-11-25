@@ -9,13 +9,13 @@ import (
 
 func D(ch chan error) {
 	err := errors.New("test error")
-	werr := WrapSend(err)
+	werr := WrapSendError(err)
 	ch <- werr
 }
 
 func C(ch chan error) error {
 	err := <-ch
-	return WrapReceive(err)
+	return WrapReceiveError(err)
 }
 
 func TestChannelError(t *testing.T) {
